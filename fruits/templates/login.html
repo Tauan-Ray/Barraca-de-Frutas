@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="container_image">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo site" class="image_logo">
+            </div> <!--container_image-->
+
+
+            <div class="form_login">
+                <form method="post" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <label for="username" class="labels">Nome de usuário: </label>
+                    <input type="text" placeholder="Insira seu usuário" class="inputs" id="username", name="username">
+
+                    <label for="password" class="labels">Senha: </label>
+                    <input type="password" placeholder="Insira sua senha" class="inputs" id="password", name="password">
+
+                    <button type="submit">Login</button>
+                </form>
+                
+                {% if errors %}
+                    <p>Credenciais inválidas. Por favor, tente novamente.</p>
+                {% endif %}
+            </div>
+
+        </div><!--Box-->
+    </div><!--Container-->
+</body>
+</html>

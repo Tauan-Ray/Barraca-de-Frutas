@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sale.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Barraca de frutas online</h1>
+        <p>Gerencie aqui todas as suas vendas</p>
+    </header>
+
+    <main>
+        <table border="1">
+            <tr>
+                <td>Fruta</td>
+                <td>Preço</td>
+                <td>Quantidade</td>
+                <td>Desconto</td>
+                <td>Total</td>
+                <td>Horário</td>
+            </tr>
+
+            {% for sale in sales %}
+                <tr>
+                    <td>{{ sale.fruit_name }}</td>
+                    <td>{{ sale.fruit_price }}</td>
+                    <td>{{ sale.quantity }}</td>
+                    <td>{{ sale.discount }}%</td>
+                    <td>{{ sale.total_price }}</td>
+                    <td>{{ sale.sale_time }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <p style="margin-top: 15px;">Total: R${{ total }}</p>
+        <a href="{% url 'seller' %}" class="button">Voltar</a>
+    </main>
+
+</body>
+</html>

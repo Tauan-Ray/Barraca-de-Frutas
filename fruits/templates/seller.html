@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt=br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendedor</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/seller.css' %}">
+
+    <script src="https://kit.fontawesome.com/a12b6f56b1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function() {
+            $("#fruit-input").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{% url 'list_fruits' %}",
+                        dataType: "json",
+                        data: {
+                            term: request.term
+                        },
+                        success: function(data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 1 
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <header>
+        <h1>Barraca de frutas online</h1>
+        <p>Gerencie aqui todas as suas vendas</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <form method="post" action=" {% url 'search_fruit' %}">
+                <div class="search_div">
+                    <div class="search_bar">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Pesquise por frutas" id="fruit-input" name="fruit">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div><!--search_bar-->
+
+                    <div class="filter">
+                        <label for="classification">Classificação: </label>
+                        <select name="classification" id="classification">
+                            <option value="" selected disabled></option>
+                            <option value="EX">Extra</option>
+                            <option value="1ST">De primeira</option>
+                            <option value="2ND">De segunda</option>
+                            <option value="3RD">De terceira</option>
+                        </select>
+
+                        <div>
+                            <label for="fresh">Fresca: </label>
+                            <select name="fresh" id="fresh">
+                                <option value="" selected disabled></option>
+                                <option value="S">Sim</option>
+                                <option value="N">Não</option>
+                            </select>
+                        </div>
+                    </div><!--filter-->
+                </div><!--search_div-->
+            </form>
+
+            <a href="{% url 'sales' %}">Vender</a>
+
+            <a href="{% url 'order' %}">Relatório</a>
+
+            <a href="{% url 'logout' %}">Sair</a>
+
+        </nav>
+        <main>
+            <table border="1">
+                <tr>
+                    <td>Fruta</td>
+                    <td>Classificação</td>
+                    <td>Fresca</td>
+                    <td>Estoque</td>
+                    <td>Preço</td>
+                </tr>
+
+                {% for fruit in fruits %}
+                    <tr>
+                        <td>{{ fruit.name }}</td>
+                        <td>{{ fruit.get_classification_display }}</td>
+                        <td>{{ fruit.get_fresh_fruits_display }}</td>
+                        <td>{{ fruit.stock }}</td>
+                        <td>{{ fruit.price }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </main>
+    </div><!--container-->
+
+</body>
+</html>

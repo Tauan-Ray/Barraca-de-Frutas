@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D6EFD8;
+}
+
+header {
+    min-height: 150px;
+    text-align: center;
+    padding-top: 20px;
+    background-image: linear-gradient(to bottom, #80AF81 , #508D4E);
+}
+
+header > h1 {
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: normal;
+    margin-bottom: 20px;
+    font-size: 3em;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.267);
+}
+
+header > p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: white;
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.315);
+}
+
+
+.container {
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+nav {
+    padding: 10px;
+    background-color: #80AF81;
+    border-bottom: 1px solid rgb(209, 207, 207);
+}
+
+.search_div {
+    display: flex;
+    align-items: center;
+}
+
+.search_bar {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.search_bar > input{
+    flex: 1;
+    padding-right: 43px;
+    height: 35px;
+    border-radius: 6px;
+    border: none;
+    padding-left: 10px;
+    box-sizing: border-box;
+    margin-right: -35px;
+}
+
+.search_bar > button {
+    height: 25px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding-left: 6px;
+    border-left: 1px solid black;
+}
+
+.search_bar > button > i {
+    font-size: 18px;
+}
+
+.search_bar > input:focus {
+    outline: none;
+    border: none;
+}
+
+.filter {
+    display: flex;
+    margin-left: 20px;
+}
+
+.filter > label {
+    font-size: 16px;
+}
+
+.filter > select {
+    margin: 0px 8px;
+}
+
+a {
+    display: inline-block;
+    background-color: #508D4E;
+    color: #052707;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    transition: transform 0.7s;
+}
+
+a:hover {
+    transform: scale(1.1);
+}
+
+main {
+    background-color: #80AF81;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding: 0px 0px 20px 0px;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.418), 
+                4px 0 4px -4px rgba(0, 0, 0, 0.418), 
+                -4px 0 4px -4px rgba(0, 0, 0, 0.418);
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+
+@media (max-width: 800px) {
+    .filter {
+        display: block;
+    }
+
+    .filter > select {
+        margin-bottom: 8px;
+    }
+}

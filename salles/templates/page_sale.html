@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sale.css' %}">
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <script src="https://kit.fontawesome.com/a12b6f56b1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+    <header>
+        <h1>Barraca de frutas online</h1>
+        <p>Gerencie aqui todas as suas vendas</p>
+    </header>
+
+    <main>
+        <form method="post" action="{% url 'sales' %}" id="form">
+            {% csrf_token %}
+            <table border="1" id="table_fruits" >
+                <tr>
+                    <td>Fruta</td>
+                    <td>Classificação</td>
+                    <td>Fresca</td>
+                    <td>Quantidade</td>
+                    <td>Preço</td>
+                    <td>Total</td>
+                </tr>
+
+            </table>
+
+                <div class="container">
+                    <label for="discount">Desconto: </label>
+                    <select name="discount" id="discount">
+                        <option value="0">0%</option>
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                        <option value="20">20%</option>
+                        <option value="25">25%</option>
+                    </select>
+                </div>
+
+                <input type="text" readonly class="total_purchase" name="total_purchase">
+
+                <div class="buttons">
+                    <a href="{% url 'seller' %}" class="button">Voltar</a>
+                    <a class="button"><button type="button" onclick="addRow()">Adicionar frutas</button></a>
+                    <a href="" class="button"><button type="submit" class="buy">Comprar</button></a>
+                </div>
+
+            {% if error %}
+                <script>
+                    alert('{{ error }}')
+                </script>
+            {% endif %}
+            
+
+            <script type="text/javascript">
+                addRow()
+
+                $(document).on('change', 'select', function(){
+                    let discount = parseFloat($(this).val());
+
+                    let total_text = document.querySelector(".total_purchase").value;
+                    let index = total_text.indexOf(':');
+                    var totalSum = parseFloat(total_text.slice(index+2));
+
+                    if (discount == 0) {
+                        var new_value = totalSum
+                    }
+
+                    else{
+                        var value_discount = (discount/100) * totalSum
+                        var new_value = totalSum - value_discount
+                    }
+
+
+                    let value = 'Total: ' + new_value.toFixed(2)
+                    
+                    document.querySelector(".total_purchase").value = value
+                });
+
+                $(document).on("input", ".quantity", function() {
+                    const totalElements = document.querySelectorAll('.total');
+                
+                    let totalSum = 0;
+
+                    totalElements.forEach(function(td) {
+                        totalSum += parseFloat(td.innerText);
+                    });
+
+
+                    var quantity = parseFloat($(this).val());
+                    var price = parseFloat($(this).closest("tr").find(".price").text());
+                    
+                    if (!isNaN(quantity) && !isNaN(price)) {
+                        let value = 'Total: ' + totalSum.toFixed(2)
+                        document.querySelector(".total_purchase").value = value
+
+                    }
+
+                    else {
+                        document.querySelector(".total_purchase").value = '';
+                    }
+                });
+                
+                var searchFruitUrl = "{% url 'list_fruits' %}";                
+            </script>
+        </form>
+    </main>
+</body>
+</html>

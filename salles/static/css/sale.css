@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #D6EFD8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    min-height: 150px;
+    text-align: center;
+    padding-top: 20px;
+    background-image: linear-gradient(to bottom, #80AF81 , #508D4E);
+}
+
+header > h1 {
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: normal;
+    margin-bottom: 20px;
+    font-size: 3em;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.267);
+}
+
+header > p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: white;
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.315);
+}
+
+.buttons {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    font-size: 17px;
+    color: #052707;
+}
+
+.button {
+    display: inline-block;
+    background-color: #508D4E;
+    color: #052707;
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    transition: transform 0.7s;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+main {
+    background-color: #80AF81;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding: 0px 10px 20px 10px;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.418), 
+                4px 0 4px -4px rgba(0, 0, 0, 0.418), 
+                -4px 0 4px -4px rgba(0, 0, 0, 0.418);
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    
+}
+
+td > input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size: 17px;
+}
+
+td > input:focus {
+    outline: none;
+    border: none;
+}
+
+td > select {
+    background-color: transparent;
+    width: 100%;
+    font-size: 17px;
+    border: none;
+    outline: none;
+}
+
+
+.total_purchase {
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+}
+
+.total_purchase:focus {
+    outline: none;
+    border: none;
+}
+
+
+.container {
+    display: block;
+    margin-top: 15px;
+}
